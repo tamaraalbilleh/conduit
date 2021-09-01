@@ -63,8 +63,7 @@ const Signin = (props) => {
       : setPassword(currentTarget.value);
   };
 
-
-  console.log (props , 'props')
+  console.log(props, "props");
   return (
     <>
       <div className={classes.root}>
@@ -116,4 +115,9 @@ Signin.propTypes = {
   articles: { articles: PropTypes.array },
   signin: PropTypes.func,
   tags: { tags: PropTypes.array },
+  user: {
+    info: PropTypes.object,
+    loginErrors: PropTypes.array,
+    registrationError: PropTypes.array,
+  },
 };

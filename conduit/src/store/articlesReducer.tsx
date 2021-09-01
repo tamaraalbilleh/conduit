@@ -19,13 +19,13 @@ const articleReducer = (state = initialState, action: ActionObjects) => {
           ? {
               ...item,
               favorited: !item.favorited,
-              favoritesCount: !item.favoritesCount++,
+              favoritesCount: (item.favoritesCount + 1).toString(),
             }
           : item === payload && item.favorited
           ? {
               ...item,
               favorited: !item.favorited,
-              favoritesCount: !item.favoritesCount--,
+              favoritesCount: (item.favoritesCount - 1).toString(),
             }
           : item
       );
@@ -38,20 +38,3 @@ const articleReducer = (state = initialState, action: ActionObjects) => {
 
 export default articleReducer;
 
-// {
-//   author: {
-//     bio: 'bio',
-//     following: false,
-//     image: "https://static.productionready.io/images/smiley-cyrus.jpg",
-//     username: "mahshid",
-//   },
-//   body: "66",
-//   createdAt: "2021-08-30T15:45:03.690Z",
-//   description: "the description",
-//   favorited: false,
-//   favoritesCount: 0,
-//   slug: "66-76zbil",
-//   tagList: [],
-//   title: "the title",
-//   updatedAt: "2021-08-30T15:45:03.690Z",
-// },

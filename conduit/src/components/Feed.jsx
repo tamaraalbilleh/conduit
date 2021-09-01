@@ -74,7 +74,7 @@ const Feed = (props) => {
     dispach(liked(item));
     props.postLike(item);
   };
-
+  console.log("props", props);
   return (
     <>
       <h2 className={classes.root}>Global Feed </h2>
@@ -152,4 +152,9 @@ Feed.propTypes = {
   getArticles: PropTypes.func,
   postLike: PropTypes.func,
   tags: { tags: PropTypes.array },
+  user: {
+    info: PropTypes.object,
+    loginErrors: PropTypes.array,
+    registrationError: PropTypes.array,
+  },
 };

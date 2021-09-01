@@ -151,14 +151,15 @@ const mapDispatchToProps = { signup };
 const mapStateToProps = (state) => state;
 export default connect(mapStateToProps, mapDispatchToProps)(Signup);
 
-// email: "tamara@gmail.com"
-// password: "1234567899"
-// username: "tamafavdf"
 
 Signup.propTypes = {
   articles: { articles: PropTypes.array },
   signup: PropTypes.func,
   tags: { tags: PropTypes.array },
+  user: {
+    info: PropTypes.object,
+    loginErrors: PropTypes.array,
+    registrationError: PropTypes.array,
+  },
 };
 
-// https://conduit.productionready.io/api/users
