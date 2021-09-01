@@ -14,6 +14,8 @@ const authReducer = (state = initialState, action: ActionObjects) => {
   let { type, payload } = action;
 
   switch (type) {
+    case actions.ADD_USER : 
+      return ({info : payload })
     case actions.SIGNUP_ERRORS:
       return { registrationError: payload };
     case actions.SIGNIN_ERRORS:

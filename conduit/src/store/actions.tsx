@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
 import cookie from "react-cookies";
-import  { Redirect } from 'react-router-dom'
+import { Redirect } from "react-router-dom";
 import axios from "axios";
 import actions from "./types";
 import { ItemObject } from "./types";
@@ -71,7 +71,10 @@ export const signin =
     console.log(user);
     return axios
       .post(url, user)
-      .then((res) => tokenValidator(res.data.user.token))
+      .then((res) => {
+        dispach(addUser(res.data.user));
+        tokenValidator(res.data.user.token);
+      })
       .catch((err) => console.error(err));
   };
 
@@ -93,7 +96,8 @@ const isLoggedIn = function (
 ) {
   if (loggedIn) {
     cookie.save("auth", token, { path: "/" });
-    return <Redirect to='/'  />
+    window.location.reload();
+    return <Redirect to="/" />;
   }
 };
 
@@ -125,5 +129,9 @@ export const redisterError = (payload: object) => ({
 
 export const loginErrors = (payload: object) => ({
   type: actions.SIGNIN_ERRORS,
+  payload,
+});
+export const addUser = (payload: object) => ({
+  type: actions.ADD_USER,
   payload,
 });

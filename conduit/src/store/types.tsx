@@ -4,6 +4,7 @@ interface ActionTypes {
   ADD_LIKE: string;
   SIGNUP_ERRORS: string;
   SIGNIN_ERRORS: string;
+  ADD_USER: string;
 }
 export interface ItemObject {
   author: {
@@ -28,6 +29,7 @@ const actions: ActionTypes = {
   ADD_LIKE: "ADD_LIKE",
   SIGNUP_ERRORS: "SIGNUP_ERRORS",
   SIGNIN_ERRORS: "SIGNIN_ERRORS",
+  ADD_USER: "ADD_USER",
 };
 
 export interface ActionObjects {

@@ -5,6 +5,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { useState } from "react";
 import { signup } from "../store/actions";
 import { connect } from "react-redux";
+import { useHistory } from "react-router-dom";
 const useStyles = makeStyles((theme) => ({
   root: {
     width: "100%",
@@ -46,6 +47,7 @@ const Signup = (props) => {
   const [emailError, setEmailError] = useState("");
   const classes = useStyles();
   const state = useSelector(() => returnState(props));
+  const history = useHistory();
 
   // handlers
   const handleSubmit = (e) => {
@@ -133,7 +135,11 @@ const Signup = (props) => {
             name="password"
           />
         </div>
-        <button type="submit" className={classes.button}>
+        <button
+          onClick={state.user.user.info.token ? history.push("/") : ""}
+          type="submit"
+          className={classes.button}
+        >
           Sign in
         </button>
       </form>

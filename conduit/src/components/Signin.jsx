@@ -45,6 +45,7 @@ const Signin = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const state = useSelector(() => returnState(props));
+  const classes = useStyles();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -61,7 +62,9 @@ const Signin = (props) => {
       ? setEmail(currentTarget.value)
       : setPassword(currentTarget.value);
   };
-  const classes = useStyles();
+
+
+  console.log (props , 'props')
   return (
     <>
       <div className={classes.root}>
