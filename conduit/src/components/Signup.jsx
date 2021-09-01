@@ -1,10 +1,10 @@
-// import 'bootstrap/dist/css/bootstrap.min.css';
+import PropTypes from "prop-types";
+import { useSelector } from "react-redux";
+import { returnState } from "../store/returnState";
 import { makeStyles } from "@material-ui/core/styles";
 import { useState } from "react";
-import { propTypes } from "react-bootstrap/esm/Image";
 import { signup } from "../store/actions";
 import { connect } from "react-redux";
-import { isTemplateSpan } from "typescript";
 const useStyles = makeStyles((theme) => ({
   root: {
     width: "100%",
@@ -45,6 +45,7 @@ const Signup = (props) => {
   const [passwordError, setPasswordError] = useState("");
   const [emailError, setEmailError] = useState("");
   const classes = useStyles();
+  const state = useSelector(() => returnState(props));
 
   // handlers
   const handleSubmit = (e) => {
@@ -84,6 +85,7 @@ const Signup = (props) => {
       return false;
     }
   };
+  console.log("state");
   return (
     <div className={classes.root}>
       <h2>Sign Up</h2>
@@ -94,6 +96,8 @@ const Signup = (props) => {
         {emailError && <li>{emailError}</li>}
         {passwordError && <li>{passwordError}</li>}
         {usernameError && <li>{usernameError}</li>}
+        {state.user.user.registrationErrors &&
+          state.user.user.registrationErrors.map((item) => <li>{item}</li>)}
       </ul>
       <form onSubmit={handleSubmit} className={classes.form}>
         <div className="form-group">
@@ -144,5 +148,11 @@ export default connect(mapStateToProps, mapDispatchToProps)(Signup);
 // email: "tamara@gmail.com"
 // password: "1234567899"
 // username: "tamafavdf"
+
+Signup.propTypes = {
+  articles: { articles: PropTypes.array },
+  signup: PropTypes.func,
+  tags: { tags: PropTypes.array },
+};
 
 // https://conduit.productionready.io/api/users

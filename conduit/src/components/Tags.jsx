@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 import { connect } from "react-redux";
 import { getTags } from "../store/actions";
 import { useEffect } from "react";
@@ -23,7 +25,6 @@ const Tags = (props) => {
   const state = useSelector(() => returnState(props));
 
   const tags = state.tags.tags;
-  console.log(tags);
   return (
     <div className={classes.tags}>
       <h3>Popular Tags</h3>
@@ -51,6 +52,11 @@ const mapDispatchToProps = { getTags };
 const mapStateToProps = (state) => state;
 export default connect(mapStateToProps, mapDispatchToProps)(Tags);
 
+Tags.propTypes = {
+  articles: { articles: PropTypes.array },
+  getTags: PropTypes.func,
+  tags: { tags: PropTypes.array },
+};
 // like
 // Request URL: https://conduit.productionready.io/api/articles/66-76zbil/favorite
 

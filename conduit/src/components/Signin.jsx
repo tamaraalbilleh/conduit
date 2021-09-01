@@ -1,3 +1,6 @@
+import PropTypes from "prop-types";
+import { useSelector } from "react-redux";
+import { returnState } from "../store/returnState";
 import { makeStyles } from "@material-ui/core/styles";
 import { useState } from "react";
 import { connect } from "react-redux";
@@ -41,6 +44,7 @@ const useStyles = makeStyles((theme) => ({
 const Signin = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const state = useSelector(() => returnState(props));
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -57,7 +61,6 @@ const Signin = (props) => {
       ? setEmail(currentTarget.value)
       : setPassword(currentTarget.value);
   };
-
   const classes = useStyles();
   return (
     <>
@@ -66,7 +69,10 @@ const Signin = (props) => {
         <a href="/signup" className={classes.a}>
           Need an account?
         </a>
-
+        <ul>
+          {state.user.user.loginErrors &&
+            state.user.user.loginErrors.map((item) => <li>{item}</li>)}
+        </ul>
         <form onSubmit={handleSubmit} className={classes.form}>
           <div className="form-group">
             <input
@@ -103,12 +109,8 @@ const mapDispatchToProps = { signin };
 const mapStateToProps = (state) => state;
 export default connect(mapStateToProps, mapDispatchToProps)(Signin);
 
-
-// bio: null
-// createdAt: "2021-08-31T13:34:49.182Z"
-// email: "tamara2alndbhs@gadmd.com"
-// id: 217332
-// image: null
-// token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MjE3MzMyLCJ1c2VybmFtZSI6InRhbWFyYTEwMiIsImV4cCI6MTYzNTYwOTM4Mn0.lYlxqerOmnDNbX3uWM15O6J6bXZA7puGozDk51uINV8"
-// updatedAt: "2021-08-31T13:34:49.285Z"
-// username: "tamara102"
+Signin.propTypes = {
+  articles: { articles: PropTypes.array },
+  signin: PropTypes.func,
+  tags: { tags: PropTypes.array },
+};

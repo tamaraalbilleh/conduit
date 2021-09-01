@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { connect, useDispatch } from "react-redux";
 import { getArticles, postLike, liked } from "../store/actions";
 import { useEffect } from "react";
@@ -85,7 +86,7 @@ const Feed = (props) => {
           </div>
         </If>
         <If condition={articles.length > 0}>
-          <div >
+          <div>
             {articles.map((item) => {
               return (
                 <div key={item.slug}>
@@ -146,21 +147,9 @@ const mapDispatchToProps = { getArticles, postLike };
 const mapStateToProps = (state) => state;
 export default connect(mapStateToProps, mapDispatchToProps)(Feed);
 
-//author:
-// bio: null
-// following: false
-// image: "https://static.productionready.io/images/smiley-cyrus.jpg"
-// username: "mahshid"
-// [[Prototype]]: Object
-// body: "66"
-// createdAt: "2021-08-30T15:45:03.690Z"
-// description: "66"
-// favorited: false
-// favoritesCount: 0
-// slug: "66-76zbil"
-// tagList: []
-// title: "66"
-// updatedAt: "2021-08-30T15:45:03.690Z"
-// [[Prototype]]: Object
-
-// Request URL: https://conduit.productionready.io/api/articles/66-76zbil/favorite
+Feed.propTypes = {
+  articles: { articles: PropTypes.array },
+  getArticles: PropTypes.func,
+  postLike: PropTypes.func,
+  tags: { tags: PropTypes.array },
+};

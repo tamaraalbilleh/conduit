@@ -1,5 +1,7 @@
 import { makeStyles } from "@material-ui/core/styles";
-
+import cookie from "react-cookies";
+import If from "./If";
+import { signOut } from "../store/actions";
 const useStyles = makeStyles((theme) => ({
   root: {
     width: "100vw",
@@ -18,13 +20,19 @@ const useStyles = makeStyles((theme) => ({
     textDecoration: "none",
     lineHeight: "65px",
     marginRight: "20px",
+    border: "none",
+    backgroundColor: "white",
   },
 }));
 
 const NavBar = () => {
   // hooks
   const classes = useStyles();
+  const auth = cookie.load("auth");
 
+  const handleLogOut = () => {
+    signOut();
+  };
   return (
     <div className={classes.root}>
       <div>
@@ -34,12 +42,22 @@ const NavBar = () => {
         <a className={classes.links} href="/">
           Home
         </a>
-        <a className={classes.links} href="/signin">
-          Sign in
-        </a>
-        <a className={classes.links} href="/signup">
-          Sign up
-        </a>
+        <If condition={!auth}>
+          <a className={classes.links} href="/signin">
+            Sign in
+          </a>
+          <a className={classes.links} href="/signup">
+            Sign up
+          </a>
+        </If>
+        <If condition={auth}>
+          <a className={classes.links} href="/settings">
+            Settings
+          </a>
+          <button onClick={handleLogOut} className={classes.links} href="/">
+            Logout
+          </button>
+        </If>
       </div>
     </div>
   );

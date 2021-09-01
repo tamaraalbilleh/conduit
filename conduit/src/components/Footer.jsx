@@ -3,7 +3,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import BottomNavigation from "@material-ui/core/BottomNavigation";
 import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
 import GitHubIcon from "@material-ui/icons/GitHub";
-import LinkedInIcon from "@material-ui/icons/LinkedIn";
 const useStyles = makeStyles({
   root: {
     textAlign: "center",
@@ -26,7 +25,7 @@ const useStyles = makeStyles({
   },
 });
 
-const Footer = (props) => {
+const Footer = () => {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
@@ -37,7 +36,6 @@ const Footer = (props) => {
         onChange={(event, newValue) => {
           setValue(newValue);
         }}
-        showLabels
         className={classes.root}
       >
         <BottomNavigationAction href="https://github.com/tamaraalbilleh/conduit" />

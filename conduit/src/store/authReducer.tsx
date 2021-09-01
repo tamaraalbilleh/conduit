@@ -3,9 +3,11 @@ import { ItemObject } from "./types";
 import actions from "./types";
 
 let initialState = {
-  user: {},
-  registrationError: [],
-  loginErrors: [],
+  user: {
+    registrationError: [],
+    loginErrors: [],
+    info: {},
+  },
 };
 
 const authReducer = (state = initialState, action: ActionObjects) => {

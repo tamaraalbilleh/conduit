@@ -1,5 +1,6 @@
 import jwt from "jsonwebtoken";
 import cookie from "react-cookies";
+import  { Redirect } from 'react-router-dom'
 import axios from "axios";
 import actions from "./types";
 import { ItemObject } from "./types";
@@ -90,11 +91,15 @@ const isLoggedIn = function (
   token: string | Number | Object,
   user: any
 ) {
-  if (loggedIn) cookie.save("auth", token, { path: "/" });
+  if (loggedIn) {
+    cookie.save("auth", token, { path: "/" });
+    return <Redirect to='/'  />
+  }
 };
 
-const signOut = function () {
+export const signOut = function () {
   cookie.remove("auth");
+  window.location.reload();
 };
 
 // actions
